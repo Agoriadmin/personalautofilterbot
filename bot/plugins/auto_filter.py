@@ -65,7 +65,7 @@ async def auto_filter(bot, update):
     if filters:
         results.append(
                 [
-                    InlineKeyboardButton(" ▶️Join Our Channel📽️", url="https://t.me/Agorimovies")
+                    InlineKeyboardButton(" ▶️Join Our Channel📽️", url="https://t.me/MoviE_LinkS_0nlY")
                 ]
             )
         for filter in filters: # iterating through each files
