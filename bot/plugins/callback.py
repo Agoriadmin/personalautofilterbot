@@ -81,7 +81,7 @@ async def cb_navg(bot, update: CallbackQuery):
 
     if ((index_val + 1 )== max_pages) or ((index_val + 1) == len(results)): # Max Pages
         temp_results.append([
-            InlineKeyboardButton("🔙 Back", callback_data=f"navigate({index_val}|back|{query})")
+            InlineKeyboardButton("⏪ Back", callback_data=f"navigate({index_val}|back|{query})")
         ])
 
     elif int(index_val) == 0:
@@ -89,8 +89,8 @@ async def cb_navg(bot, update: CallbackQuery):
 
     else:
         temp_results.append([
-            InlineKeyboardButton("🔙 Back", callback_data=f"navigate({index_val}|back|{query})"),
-            InlineKeyboardButton("Next 🔜", callback_data=f"navigate({index_val}|next|{query})")
+            InlineKeyboardButton("⏪ Back", callback_data=f"navigate({index_val}|back|{query})"),
+            InlineKeyboardButton("Next ⏩", callback_data=f"navigate({index_val}|next|{query})")
         ])
 
     if not int(index_val) == 0:    
@@ -142,7 +142,7 @@ async def cb_navg(bot, update: CallbackQuery):
     
     reply_markup = InlineKeyboardMarkup(temp_results)
     
-    text=f"<i> 📍 Checks links @agorimovies 📍..Found</i> <code>{leng}</code> <i>Results For Your Request 🤗:</i> <code>{query}</code>"
+    text=f"<i>Found</i> <code>{leng}</code> <i>Results For Your Query:</i> <code>{query}</code>"
         
     try:
         await update.message.edit(
@@ -183,35 +183,35 @@ async def cb_settings(bot, update: CallbackQuery):
         [
             InlineKeyboardButton
                 (
-                    "♏Channels♏", callback_data=f"channel_list({chat_id})"
+                    "Channels", callback_data=f"channel_list({chat_id})"
                 ), 
             
             InlineKeyboardButton
                 (
-                    "⭕Filter Types⭕", callback_data=f"types({chat_id})"
+                    "Filter Types", callback_data=f"types({chat_id})"
                 )
         ],
         [
             InlineKeyboardButton
                 (
-                    "🛠️ Configure 🛠", callback_data=f"config({chat_id})"
+                    "Configure 🛠", callback_data=f"config({chat_id})"
                 )
         ], 
         [
             InlineKeyboardButton
                 (
-                    "🔻Status🔻", callback_data=f"status({chat_id})"
+                    "Status", callback_data=f"status({chat_id})"
                 ),
             
             InlineKeyboardButton
                 (
-                    "❗About❗", callback_data=f"about({chat_id})"
+                    "About", callback_data=f"about({chat_id})"
                 )
         ],
         [
             InlineKeyboardButton
                 (
-                    "🔐 Close 🔐", callback_data="close"
+                    "Close 🔐", callback_data="close"
                 )
         ]
     ]
@@ -1608,7 +1608,7 @@ async def cb_about(bot, update: CallbackQuery):
         [
             InlineKeyboardButton
                 (
-                    "My Dev ⚡", url="https://t.me/AlbertEinstein_TG"
+                    "My Doc ⚡", url="https://t.me/personal_privetbot1"
                 ),
                 
             InlineKeyboardButton
@@ -1639,10 +1639,10 @@ async def callback_data(bot, update: CallbackQuery):
 
     if query_data == "start":
         buttons = [[
-            InlineKeyboardButton('My Dev 👨‍🔬', url='https://t.me/AlbertEinstein_TG'),
+            InlineKeyboardButton('My Boss 👨‍🔬', url='https://t.me/personal_privetbot1'),
             InlineKeyboardButton('Source Code 🧾', url ='https://github.com/CrazyBotsz/Adv-Filter-Bot-V2')
         ],[
-            InlineKeyboardButton('Support 🛠', url='https://t.me/CrazyBotszGrp')
+            InlineKeyboardButton('Support 🛠', url='https://t.me/agorihome')
         ],[
             InlineKeyboardButton('Help ⚙', callback_data="help")
         ]]
