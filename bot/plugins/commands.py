@@ -38,7 +38,7 @@ async def start(bot, update):
                         [
                             InlineKeyboardButton
                                 (
-                                    '👾 Owner's 👾', url="https://t.me/agorimovies"
+                                    '👾 Owners 👾', url="https://t.me/agorimovies"
                                 )
                         ]
                     ]
@@ -77,7 +77,7 @@ async def start(bot, update):
                         [
                             InlineKeyboardButton
                                 (
-                                    '🤖 Admins 🤖', url="https://t.me/agorimovies"
+                                    '🤖Developers🤖', url="https://t.me/agorimovies"
                                 )
                         ]
                     ]
