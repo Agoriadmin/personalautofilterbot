@@ -8,7 +8,7 @@ from pyrogram.errors import ButtonDataInvalid, FloodWait
 
 from bot.database import Database # pylint: disable=import-error
 from bot.bot import Bot # pylint: disable=import-error
-from bot import ADMINS
+
 
 FIND = {}
 INVITE_LINK = {}
@@ -20,11 +20,7 @@ async def auto_filter(bot, update):
     """
     A Funtion To Handle Incoming Text And Reply With Appropriate Results
     """
-    KEY_WORD = update.text
-    G_SEARCH = re.sub(r' ', '+', f'{KEY_WORD}')
     group_id = update.chat.id
-
-    query = update.text
 
     if re.findall(r"((^\/|^,|^\.|^[\U0001F600-\U000E007F]).*)", update.text):
         return
@@ -32,7 +28,8 @@ async def auto_filter(bot, update):
     if ("https://" or "http://") in update.text:
         return
     
-
+    query = re.sub(r"[1-2]\d{3}", "", update.text) # Targetting Only 1000 - 2999 😁
+    
     if len(query) < 2:
         return
     
@@ -63,37 +60,30 @@ async def auto_filter(bot, update):
     filters = await db.get_filters(group_id, query)
     
     if filters:
-        results.append(
-                [
-                    InlineKeyboardButton(" ▶️Join Our Channel📽️", url="https://t.me/MoviE_LinkS_0nlY")
-                ]
-            )
         for filter in filters: # iterating through each files
             file_name = filter.get("file_name")
             file_type = filter.get("file_type")
             file_link = filter.get("file_link")
-            file_size = int(filter.get("file_size", ""))
-            file_size = round((file_size/1024),2) # from B to KB
-            size = ""
-            file_KB = ""
-            file_MB = ""
-            file_GB = ""
+            file_size = int(filter.get("file_size", "0"))
+            
+            # from B to MiB
             
             if file_size < 1024:
-                file_KB = f"𝚂𝚞𝚋𝚝𝚒𝚝𝚕𝚎"
-                size = file_KB
-            elif file_size < (1024*1024):
-                file_MB = f"📂 {str(round((file_size/1024),2))} 𝙼ʙ"
-                size = file_MB
-            else:
-                file_GB = f"📂 {str(round((file_size/(1024*1024)),2))} 𝙶ʙ"
-                size = file_GB
-                
-            file_names = file_name
-            file_size = size
-            print(file_name)
-
+                file_size = f"[{file_size} B]"
+            elif file_size < (1024**2):
+                file_size = f"[{str(round(file_size/1024, 2))} KB] "
+            elif file_size < (1024**3):
+                file_size = f"[{str(round(file_size/(1024**2), 2))} MB] "
+            elif file_size < (1024**4):
+                file_size = f"[{str(round(file_size/(1024**3), 2))} GB] "
             
+            
+            file_size = "" if file_size == ("[0 B]") else file_size
+            
+            # add emoji down below inside " " if you want..
+            button_text = f"{file_size}{file_name}"
+            
+
             if file_type == "video":
                 if allow_video: 
                     pass
@@ -128,30 +118,17 @@ async def auto_filter(bot, update):
                 
                 bot_ = FIND.get("bot_details")
                 file_link = f"https://t.me/{bot_.username}?start={unique_id}"
-    
-            results.append([
-            InlineKeyboardButton(file_names, url=file_link),
-            InlineKeyboardButton(file_size, url=file_link)
-        ])
+            
+            results.append(
+                [
+                    InlineKeyboardButton(button_text, url=file_link)
+                ]
+            )
         
     else:
-        if update.from_user.id not in ADMINS:
-            send_msg = await bot.send_message(
-            chat_id = update.chat.id,
-            text=f"𝙋𝙡𝙚𝙖𝙨𝙚 𝘾𝙝𝙚𝙘𝙠 𝘼𝙣𝙙 𝙘𝙤𝙥𝙮 𝙤𝙣𝙡𝙮 𝙢𝙤𝙫𝙞𝙚 𝙣𝙖𝙢𝙚 𝙛𝙧𝙤𝙢 𝙙𝙤𝙬𝙣 𝙗𝙪𝙩𝙩𝙤𝙣𝙨 𝙖𝙣𝙙 𝙨𝙚𝙣𝙙 𝙙𝙞𝙧𝙚𝙘𝙩𝙡𝙮 𝙝𝙚𝙧𝙚",
-            reply_markup = InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton("🔍ᴄʜᴇᴄᴋ sᴘᴇʟʟɪɴɢ ʜᴇʀᴇ", url=f'http://google.com/search?q={G_SEARCH}')
-                ]
-            ]
-         ),
-            parse_mode="html",
-            reply_to_message_id=update.message_id
-         ) 
-            await asyncio.sleep(20)
-            await send_msg.delete()
-            
+        return # return if no files found for that query
+    
+
     if len(results) == 0: # double check
         return
     
@@ -170,12 +147,13 @@ async def auto_filter(bot, update):
         if len_result != 1:
             result[0].append(
                 [
-                    InlineKeyboardButton("𝐍𝐞𝐱𝐭 ▶️", callback_data=f"navigate(0|next|{query})")
+                    InlineKeyboardButton("Next ⏩", callback_data=f"navigate(0|next|{query})")
                 ]
             )
+        
         # Just A Decaration
         result[0].append([
-            InlineKeyboardButton(f"🎥𝐏𝐚𝐠𝐞 1/{len_result if len_result < max_pages else max_pages} 🔰", callback_data="ignore")
+            InlineKeyboardButton(f"🔰 Page 1/{len_result if len_result < max_pages else max_pages} 🔰", callback_data="ignore")
         ])
         
         
@@ -225,10 +203,10 @@ async def auto_filter(bot, update):
         try:
             await bot.send_message(
                 chat_id = update.chat.id,
-                text=f"𝐆𝐫𝐨𝐮𝐩:- <b>@agorihome</b> \n𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐌𝐨𝐯𝐢𝐞:- <code>{query}</code> \n𝐑𝐞𝐬𝐮𝐥𝐭𝐬 𝐅𝐨𝐮𝐧𝐝:- {(len_results)} \n𝐑𝐞𝐪𝐮𝐞𝐬𝐭𝐞𝐝 𝐁𝐲:- <b>{update.from_user.first_name}</b> \n \n <b><a href='https://t.me/joinchat/SsHwKcAPDY8xOTRl'>𝙅𝙤𝙞𝙣 𝙏𝙝𝙞𝙨 𝘾𝙝𝙖𝙣𝙣𝙚𝙡 𝘼𝙣𝙙 𝗣𝗿𝗲𝘀𝘀 𝗧𝗵𝗲 𝗗𝗼𝘄𝗻 𝗕𝘂𝘁𝘁𝗼𝗻𝘀 𝗧𝗼 𝗔𝗰𝗰𝗲𝘀𝘀 𝗧𝗵𝗲 𝗙𝗶𝗹𝗲</a> \n \n<b><a href='https://t.me/joinchat/SsHwKcAPDY8xOTRl'>പടം ലഭിക്കുന്നതിനായി ഇവിടെ ക്ലിക്ക് ചെയ്താൽ കിട്ടുന്ന ചാനലിൽ ജോയിൻ ആയ ശേഷം താഴെ കാണുന്ന ബട്ടണുകളിൽ ക്ലിക്ക് ചെയ്യുക👇</a></b>",
+                text=f"Found {(len_results)} Results For Your Query: <code>{query}</code>",
                 reply_markup=reply_markup,
                 parse_mode="html",
-                reply_to_message_id= (update.message_id) if (update.reply_to_message == None) else (update.reply_to_message.message_id)
+                reply_to_message_id=update.message_id
             )
 
         except ButtonDataInvalid:
@@ -307,4 +285,3 @@ async def recacher(group_id, ReCacheInvite=True, ReCacheActive=False, bot=Bot, u
             
             ACTIVE_CHATS[str(group_id)] = achatId
     return 
-
