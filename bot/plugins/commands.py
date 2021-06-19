@@ -30,7 +30,7 @@ async def start(bot, update):
             await bot.send_document(
                 chat_id=update.chat.id,
                 document = file_id,
-                caption = caption,
+                caption = f"{file_name} \n @agorimovies \n @mv_mania \n @agorihome",
                 parse_mode="html",
                 reply_to_message_id=update.message_id,
                 reply_markup=InlineKeyboardMarkup(
@@ -38,7 +38,7 @@ async def start(bot, update):
                         [
                             InlineKeyboardButton
                                 (
-                                    'Developers', url="https://t.me/Agorimovies"
+                                    '♏️Developers♏️', url="https://t.me/Agorimovies"
                                 )
                         ]
                     ]
@@ -50,14 +50,14 @@ async def start(bot, update):
             await bot.send_video(
                 chat_id=update.chat.id,
                 video = file_id,
-                caption = f"{file_name} \n @agorimovies",
+                caption = f"{file_name} \n @agorimovies \n @mv_mania \n @agorihome",
                 parse_mode="html",
                 reply_markup=InlineKeyboardMarkup(
                     [
                         [
                             InlineKeyboardButton
                                 (
-                                    'Developers', url="https://t.me/CrazyBotsz"
+                                    '💙Developer💙', url="https://t.me/personal_privetbot1"
                                 )
                         ]
                     ]
