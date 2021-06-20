@@ -85,8 +85,6 @@ async def auto_filter(bot, update):
             file_size = size
             print(file_name)
 
-            
-            if file_type == "video":
             if file_type == "video":
                 if allow_video: 
                     pass
