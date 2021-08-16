@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# (c) @AlbertEinsteinTG
+# (c) @AlbertEinsteinTG & NO-ONE-KN0WS-ME & MRRONS
 
-from pyrogram import filters, Client
+from pyrogram import filters
+from pyrogram import Client as Mai_bOTs
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
 from bot import Translation # pylint: disable=import-error
 from bot.database import Database # pylint: disable=import-error
+#from bot import ADMINS
 
 db = Database()
 
-@Client.on_message(filters.command(["start"]) & filters.private, group=1)
+@Mai_bOTs.on_message(filters.command(["start"]) & filters.private, group=1)
 async def start(bot, update):
     
     try:
@@ -30,91 +32,105 @@ async def start(bot, update):
             await bot.send_document(
                 chat_id=update.chat.id,
                 document = file_id,
-                caption = "Thankyou For Using Our Service Please Support And Share Our Channel And Group Link To Your Friends  \n @agorimovies \n @mv_mania \n @agorihome",
+                caption ="❤️ 𝚃𝚑𝚊𝚗𝚔𝚢𝚘𝚞 𝙵𝚘𝚛 𝚄𝚜𝚒𝚗𝚐 𝙾𝚞𝚛 𝚂𝚎𝚛𝚟𝚒𝚌𝚎 𝙿𝚕𝚎𝚊𝚜𝚎 𝚂𝚞𝚙𝚙𝚘𝚛𝚝 𝚄𝚜 𝙱𝚢 𝚂𝚑𝚊𝚛𝚒𝚗𝚐 𝙾𝚞𝚛 𝙲𝚑𝚊𝚗𝚗𝚎𝚕/𝙶𝚛𝚘𝚞𝚙 𝙻𝚒𝚗𝚔 𝚃𝚘 𝚈𝚘𝚞𝚛 𝙵𝚛𝚒𝚎𝚗𝚍𝚜 \n\n❁𝕁𝕠𝕚𝕟 𝕆𝕦𝕣 ℂ𝕙𝕒𝕟𝕟𝕖𝕝𝕤❁  \n\n⟱⟱⟱⟱⟱⟱⟱⟱⟱⟱⟱⟱  \n\n📌𝕮𝖍𝖆𝖓𝖓𝖊𝖑: @agorihome➻ \n📌𝕮𝖍𝖆𝖓𝖓𝖊𝖑 : @agoriseries➻ \n👥𝕲𝖗𝖔𝖚𝖕 : @agorimovies➻ \n👥𝕲𝖗𝖔𝖚𝖕 : @mv_mania",
                 parse_mode="html",
                 reply_to_message_id=update.message_id,
                 reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton
-                                (
-                                    '📵Developer📵', url="https://t.me/personal_privetbot1"
-                                )
-                        ]
-                    ]
-                )
-            )
+            [
+                [
+                    InlineKeyboardButton('𝑺𝑯𝑨𝑹𝑬🌐', url="https://t.me/share/url?url=https%3A//t.me/share/url%3Furl%3Dhttps%253A//t.me/agorimovies")
+                ],
+                [
+                    InlineKeyboardButton('💣𝐌𝐎𝐕𝐈𝐄 𝐑𝐄𝐐💣', url="https://t.me/agorimovies"),
+                    InlineKeyboardButton('🔥𝐖𝐄𝐁𝐒𝐄𝐑𝐈𝐄S🔥', url="https://t.me/agoriseries")
+                ],
+                [
+                    InlineKeyboardButton('⚠️𝐆𝐑𝐎𝐔𝐏⚠️', url="https://t.me/Agorimovies"),
+                    InlineKeyboardButton('💢𝐀𝐍𝐈𝐌𝐄💢', url="https://t.me/agkidsroom")
+                ]
+            ]
+        )
+    )
 
         elif file_type == "video":
         
             await bot.send_video(
                 chat_id=update.chat.id,
                 video = file_id,
-                caption = f"{file_name} \n @agorimovies \n @mv_mania \n @agorihome",
+                caption = caption,
                 parse_mode="html",
                 reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton
-                                (
-                                    '💙Developer💙', url="https://t.me/personal_privetbot1"
-                                )
-                        ]
-                    ]
-                )
-            )
+            [
+                [
+                    InlineKeyboardButton('𝑺𝑯𝑨𝑹𝑬🌐', url="https://t.me/share/url?url=https%3A//t.me/share/url%3Furl%3Dhttps%253A//t.me/agorimovies")
+                ],
+                [
+                    InlineKeyboardButton('💥𝐌𝐎𝐕𝐈𝐄 𝐑𝐄𝐐💥', url="https://t.me/agorimovies"),
+                    InlineKeyboardButton('♻️𝐖𝐄𝐁𝐒𝐄𝐑𝐈𝐄𝐒♻️', url="https://t.me/agoriseries")
+                ],
+                [
+                    InlineKeyboardButton('🔱𝐆𝐑𝐎𝐔𝐏🔱', url="https://t.me/agorimovies"),
+                    InlineKeyboardButton('♻️𝐀𝐍𝐈𝐌𝐄♻️', url="https://t.me/agkidsroom")
+                ]
+            ]
+        )
+    )
             
         elif file_type == "audio":
         
             await bot.send_audio(
                 chat_id=update.chat.id,
                 audio = file_id,
-                caption = f"{file_name} \n @agorimovies \n @mv_mania",
+                caption = caption,
                 parse_mode="html",
                 reply_markup=InlineKeyboardMarkup(
-                    [
-                        [
-                            InlineKeyboardButton
-                                (
-                                    '🤗Developer🤗', url="https://t.me/personal_privetbot1"
-                                )
-                        ]
-                    ]
-                )
-            )
+            [
+                [
+                    InlineKeyboardButton('𝑺𝑯𝑨𝑹𝑬 🌐', url="https://t.me/share/url?url=https%3A//t.me/share/url%3Furl%3Dhttps%253A//t.me/agorimovies")
+                ],
+                [
+                    InlineKeyboardButton('💥𝐌𝐎𝐕𝐈𝐄 𝐑𝐄𝐐💥', url="https://t.me/filmcityhd1"),
+                    InlineKeyboardButton('♻️𝐖𝐄𝐁𝐒𝐄𝐑𝐈𝐄𝐒♻️', url="https://t.me/fchweb")
+                ],
+                [
+                    InlineKeyboardButton('🔱𝐆𝐑𝐎𝐔𝐏🔱', url="https://t.me/fchchatgroup"),
+                    InlineKeyboardButton('♻️𝐀𝐍𝐈𝐌𝐄♻️', url="https://t.me/fchanime")
+                ]
+            ]
+        )
+    )
 
         else:
             print(file_type)
         
         return
 
-    buttons = [[
-        InlineKeyboardButton('🤗Developers🤗', url='https://t.me/agorimovies'),
-        InlineKeyboardButton('📃 Source Code 🧾', url ='https://github.com/CrazyBotsz/Adv-Auto-Filter-Bot-V2')
-    ],[
-        InlineKeyboardButton('Support 🛠', url='https://t.me/agorihome')
-    ],[
-        InlineKeyboardButton('Help ⚙', callback_data="help")
-    ]]
-    
-    reply_markup = InlineKeyboardMarkup(buttons)
-    
-    await bot.send_message(
+    await bot.send_photo(
         chat_id=update.chat.id,
-        text=Translation.START_TEXT.format(
+        photo = 'https://telegra.ph/file/dc6db71cfea54e0e0565c.jpg',
+        caption=Translation.START_TEXT.format(
                 update.from_user.first_name),
-        reply_markup=reply_markup,
-        parse_mode="html",
+        reply_markup=InlineKeyboardMarkup(
+            [
+                
+                [
+                    InlineKeyboardButton('💣𝐌𝐎𝐕𝐈𝐄 𝐑𝐄𝐐💣', url='https://t.me/agorimovies'),
+                    InlineKeyboardButton('💫𝐖𝐄𝐁𝐒𝐄𝐑𝐈𝐄𝐒💫', url ='https://t.me/agoriseries')
+                ],
+                [
+                    InlineKeyboardButton('🚸𝐀𝐍𝐈𝐌𝐄🚸', url='https://t.me/agkidsroom'),
+                    InlineKeyboardButton('♻️𝐆𝐑𝐎𝐔𝐏♻️', url='https://t.me/agorimovies')
+                ]
+            ]
+        ), 
+        parse_mode="html", 
         reply_to_message_id=update.message_id
     )
 
 
-@Client.on_message(filters.command(["help"]) & filters.private, group=1)
+@Mai_bOTs.on_message(filters.command(["help"]) & filters.private, group=1)
 async def help(bot, update):
     buttons = [[
-        InlineKeyboardButton('Home ⚡', callback_data='start'),
-        InlineKeyboardButton('About 🚩', callback_data='about')
-    ],[
         InlineKeyboardButton('Close 🔐', callback_data='close')
     ]]
     
@@ -129,11 +145,10 @@ async def help(bot, update):
     )
 
 
-@Client.on_message(filters.command(["about"]) & filters.private, group=1)
+@Mai_bOTs.on_message(filters.command(["about"]) & filters.private, group=1)
 async def about(bot, update):
     
     buttons = [[
-        InlineKeyboardButton('Home ⚡', callback_data='start'),
         InlineKeyboardButton('Close 🔐', callback_data='close')
     ]]
     reply_markup = InlineKeyboardMarkup(buttons)
@@ -143,6 +158,29 @@ async def about(bot, update):
         text=Translation.ABOUT_TEXT,
         reply_markup=reply_markup,
         disable_web_page_preview=True,
+        parse_mode="html",
+        reply_to_message_id=update.message_id
+    )
+
+@Mai_bOTs.on_message(filters.text & ~ filters.command(["start", "help"]) & filters.private & ~ filters.me)
+async def note(bot, update):
+    buttons = [[
+        InlinekeyboardButton('MOVIE REQUEST 💣', url='https://t.me/agorimovies')
+    ],[
+        InlineKeyboardButton('🏡 WEBSERIES CHANNEL💢', url='https://t.me/agoriseries'),
+        InlineKeyboardButton('📽️ ANIME CHANNEL', url ='https://t.me/agkidsroom')
+    ],[
+        InlineKeyboardButton('🤔𝙷𝙾𝚆 𝚃𝙾 𝚁𝙴𝚀?', url='https://t.me/c/1387634315/4')
+    ],[
+        InlineKeyboardButton('𝚂𝙷𝙰𝚁𝙴 𝚃𝙾 𝚈𝙾𝚄𝚁 𝙵𝚁𝙸𝙴𝙽𝙳𝚂😍', url='https://t.me/share/url?url=https%3A//t.me/share/url%3Furl%3Dhttps%253A//t.me/agorimovies')
+    ]]
+    
+    reply_markup = InlineKeyboardMarkup(buttons)
+    
+    await bot.send_message(
+        chat_id=update.chat.id,
+        text="എന്നെ ഉപയോഗിക്കുന്നതിനു നന്ദി😊.നിങ്ങൾക്ക് വേണ്ട പടങ്ങൾ @agorimovies എന്ന ഗ്രൂപ്പിൽ ചോദിച്ചാൽ മാത്രമേ കിട്ടുകയുള്ളൂ.\nഇവിടെ ചോദിച്ചു സമയം കളയണ്ട!🚶\n\nThank you for using me ❤️\nPlease Don't Req For Movies Here.\nJoin Our @filmcityhd1 Group And Req Your Movies There...🚶 ",
+        reply_markup=reply_markup,
         parse_mode="html",
         reply_to_message_id=update.message_id
     )
