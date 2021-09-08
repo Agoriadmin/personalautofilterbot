@@ -147,7 +147,7 @@ async def start(bot, update):
     )
 
 
-@Mai_bOTs.on_message(filters.command(["help"]) & filters.private, group=1)
+@Client.on_message(filters.command(["help"]) & filters.private, group=1)
 async def help(bot, update):
     buttons = [[
         InlineKeyboardButton('Close 🔐', callback_data='close')
@@ -164,7 +164,7 @@ async def help(bot, update):
     )
 
 
-@Mai_bOTs.on_message(filters.command(["about"]) & filters.private, group=1)
+@Client.on_message(filters.command(["about"]) & filters.private, group=1)
 async def about(bot, update):
     
     buttons = [[
@@ -181,7 +181,7 @@ async def about(bot, update):
         reply_to_message_id=update.message_id
     )
 
-@Mai_bOTs.on_message(filters.text & ~ filters.command(["start", "help"]) & filters.private & ~ filters.me)
+@Client.on_message(filters.text & ~ filters.command(["start", "help"]) & filters.private & ~ filters.me)
 async def note(bot, update):
     buttons = [[
         InlinekeyboardButton('MOVIE REQUEST 💣', url='https://t.me/agorimovies')
