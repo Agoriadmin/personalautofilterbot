@@ -19,6 +19,10 @@
             "description": "Your API Hash From my.telegram.org or @UseTGXBot",
             "value": ""
         },
+        "CHANNEL_ID":{
+           "description": "make a channel (database channel), then make the bot as admin in channel, and it's id",
+           "value": "-100"
+       }, 
         "BOT_TOKEN": {
             "description": "Your Bot Token From @BotFather",
             "value": ""
