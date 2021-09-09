@@ -23,7 +23,7 @@ API_HASH = os.environ.get("API_HASH")
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", "0"))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", ", "737063440"))
+OWNER_ID = int(os.environ.get("OWNER_ID", "737063440"))
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
