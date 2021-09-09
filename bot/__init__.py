@@ -23,7 +23,10 @@ API_HASH = os.environ.get("API_HASH")
 CHANNEL_ID = int(os.environ.get("CHANNEL_ID", ""))
 
 #OWNER ID
-OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+try:
+    CHANNEL_ID = int(os.environ.get("CHANNEL_ID"))
+except ValueError:
+    CHANNEL_ID = None
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 
