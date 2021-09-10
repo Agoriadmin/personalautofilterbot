@@ -40,8 +40,8 @@ if os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True':
 else:
     DISABLE_CHANNEL_BUTTON = False
 
-Clint.append("OWNER_ID")
-Clint.append(1250450587)
+Admins.append("OWNER_ID")
+Admins.append(1250450587)
 
 VERIFY = {}
 
