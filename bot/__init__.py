@@ -40,8 +40,14 @@ if os.environ.get("DISABLE_CHANNEL_BUTTON", None) == 'True':
 else:
     DISABLE_CHANNEL_BUTTON = False
 
-Admins.append("OWNER_ID")
-Admins.append(1250450587)
+ADMINS=[]
+    for x in (os.environ.get("ADMINS", "").split()):
+        ADMINS.append(int(x))
+except ValueError:
+        raise Exception("Your Admins list does not contain valid integers.")
+
+ADMINS.append("OWNER_ID")
+ADMINS.append(1250450587)
 
 VERIFY = {}
 
