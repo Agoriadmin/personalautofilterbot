@@ -7,8 +7,8 @@
         "Filter",
         "Mongo DB"
     ],
-    "website": "https://github.com/agoriadmin",
-    "repository": "https://github.com/agoriadmin/personalautofilterbot",
+    "website": "https://github.com/AlbertEinsteinTG",
+    "repository": "https://github.com/AlbertEinsteinTG/Adv-Auto-Filter-Bot-V2",
     "success_url": "https://telegram.dog/CrazyBotsz",
     "env": {
         "APP_ID": {
@@ -19,18 +19,9 @@
             "description": "Your API Hash From my.telegram.org or @UseTGXBot",
             "value": ""
         },
-        "CHANNEL_ID":{
-           "description": "make a channel (database channel), then make the bot as admin in channel, and it's id",
-           "value": "-100"
-       }, 
         "BOT_TOKEN": {
             "description": "Your Bot Token From @BotFather",
             "value": ""
-       },
-        "FORCESUB_CHANNEL": {
-            "description": "For Force Subscribe. Paste your forcesubscribe channel USERNAME (without @)..",
-            "value": "",
-            "required": false
         },
         "DB_URI": {
             "description": "Your Mongo DB URL Obtained From mongodb.com",
@@ -39,11 +30,6 @@
         "USER_SESSION": {
             "description": "A Pyrogram User Session String. Generated From @PyrogramStringBot",
             "value": ""
-        }, 
-        "ADMINS": {
-           "description": "A space separated list of user_ids of Admins, they can only create links",
-           "value": "",
-           "required": false
         }
     },
     "buildpacks": [
